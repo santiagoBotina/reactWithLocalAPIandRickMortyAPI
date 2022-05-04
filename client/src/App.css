@@ -45,6 +45,10 @@ a:visited {
   color: white;
 }
 
+a:link {
+  color: white;
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -74,4 +78,24 @@ h3 {
 
 .card-subtitle {
   font-weight: bold;
+}
+
+.pagina-button {
+  border: none;
+  padding: 12px;
+  margin: 20px 50px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.div-container {
+  text-align: center;
+}
+
+.input-form {
+  padding: 5px;
+  font-size: 1.5rem;
+  margin: 15px 10px 40px;
 }

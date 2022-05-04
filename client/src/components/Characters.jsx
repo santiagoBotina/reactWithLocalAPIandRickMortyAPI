@@ -3,23 +3,26 @@ import "../App.css";
 
 function RickAndMorty() {
   const [personajes, setPersonajes] = useState([]);
+  const [pagina, setPagina] = useState(1);
+
+  function pasarPagina() {
+    setPagina(pagina + 1);
+  }
+
+  function regresarPagina() {
+    setPagina(pagina - 1);
+  }
 
   //**MONTANDO COMPONENTE
   useEffect(() => {
     console.log("%cSe montó el componente", "color:green");
-    fetch("https://rickandmortyapi.com/api/character")
+    fetch(`https://rickandmortyapi.com/api/character?page=${pagina}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPersonajes(data.results);
       })
       .catch((error) => console.error(error));
-  }, []);
-
-  //**ACTUALIZANDO COMPONENTE */
-  useEffect(() => {
-    console.log("%cSe actualizó el componente", "color: yellow");
-  }, [personajes]);
+  }, [pagina]);
 
   //**DESMONTANDO COMPONENTE */
   useEffect(() => {
@@ -27,7 +30,7 @@ function RickAndMorty() {
   }, [personajes]);
 
   return (
-    <div>
+    <div className="div-container">
       <h3>PERSONAJES</h3>
       <ul className="list">
         {personajes.length === 0 && <p>Cargando...</p>}
@@ -48,7 +51,12 @@ function RickAndMorty() {
           );
         })}
       </ul>
-      <button></button>
+      <button className="pagina-button" onClick={regresarPagina}>
+        Página anterior
+      </button>
+      <button className="pagina-button" onClick={pasarPagina}>
+        Siguiente página
+      </button>
     </div>
   );
 }
